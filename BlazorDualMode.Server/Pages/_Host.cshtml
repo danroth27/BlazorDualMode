@@ -25,14 +25,9 @@
     <link href="css/site.css" rel="stylesheet" />
 </head>
 <body>
-        @if (Env.IsDevelopment())
-        {
-            <app>@(await Html.RenderComponentAsync<App>())</app>
-        }
-        else
-        {
-            <app>@(await Html.RenderStaticComponentAsync<App>())</app>
-        }
+    <app>
+        @(await Html.RenderComponentAsync<App>(Env.IsDevelopment() ? RenderMode.ServerPrerendered : RenderMode.Static))
+    </app>
 
     <script src="_framework/blazor.@(Env.IsDevelopment() ? "server" : "webassembly").js"></script>
 </body>
